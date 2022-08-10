@@ -1,0 +1,18 @@
+// Bibliotecas
+@import 
+"libraries/normalize",
+"libraries/meyer-web-reset",
+"libraries/rfs";
+
+// Variáveis e mixins
+@import 
+"global/variables",
+"global/mixins";
+
+// Customizações das bibliotecas
+@import 
+"custom/rfs",
+"custom/reset";
+
+// Projeto
+@import "project";

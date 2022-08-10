@@ -1,0 +1,57 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+:root {
+    font-size: $font-size-root;
+    scroll-behavior: smooth;
+    // remove o atraso de clique no smartphone windows
+    -ms-touch-action: manipulation;
+	touch-action: manipulation;
+}
+body {
+	// remove a caixa azul ao clicar em botões no mobile
+	-webkit-tap-highlight-color: transparent;
+}
+button {
+    border: none;
+    background: none;
+    padding: 0;
+    text-align: left;
+}
+input, textarea {
+    border-radius: 0;
+}
+a, abbr[title] {
+    text-decoration: none;
+}
+abbr[title] {
+    cursor: help;
+    // sublinhados e sobrelinhados não são interrompidos pelas letras
+    -webkit-text-decoration-skip-ink: none;
+	text-decoration-skip-ink: none;
+}
+input, textarea, button,
+select, a {
+    // remove o estilo de borda padrão no mobile
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+em {
+    font-style: italic;
+}
+strong {
+    font-weight: bold;
+}
+img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+svg {
+    display: block;
+}
