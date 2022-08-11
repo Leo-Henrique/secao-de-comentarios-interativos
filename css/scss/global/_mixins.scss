@@ -3,3 +3,101 @@
         @content;
     }
 }
+
+@mixin btn($background, $color) {
+    background-color: $background;
+    color: $color;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    padding: 1.5rem 3rem;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 200ms ease-in-out;
+
+    @include desktop-supported {
+        &:hover {
+            background-color: $background + 60%;
+        }
+    }
+    &:active {
+        background-color: $background + 30%;
+    }
+}
+
+@mixin btn-withIcon($color) {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.8rem;
+    padding: 0.8rem;
+    cursor: pointer;
+
+    path {
+        fill: $color;
+        transition: fill 200ms ease-in-out;
+    }
+    span {
+        color: $color;
+        font-weight: 500;
+        text-align: left;
+        white-space: nowrap;
+        transition: color 200ms ease-in-out;
+    }
+    @include desktop-supported {
+        &:hover path {
+            fill: $color + 60%;
+        }
+        &:hover span {
+            color: $color + 60%;
+        }
+    }
+    &:active path {
+        background-color: $color + 30%;
+    }
+    &:active span {
+        color: $color + 60%;
+    }
+}
+
+@mixin userpic($dimension) {
+    flex-shrink: 0;
+    width: $dimension;
+    height: $dimension;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+@mixin input {
+    width: 100%;
+    padding: 1.5rem 2.5rem;
+    border-radius: $borderRadius-global;
+    border: 1px solid $support-light-3;
+    outline: none;
+    transition: border-color, box-shadow;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+
+    &::placeholder {
+        color: $support-dark-2 + 60%;
+    }
+    &:placeholder-shown {
+        text-overflow: ellipsis;
+    }
+    &:focus {
+        border-color: $support-dark-2;
+    }
+    &.error {
+        box-shadow: inset 0 0 0 2px $secondary;
+        border-color: $secondary;
+    }
+}

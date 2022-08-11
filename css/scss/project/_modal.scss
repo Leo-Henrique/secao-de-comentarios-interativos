@@ -1,0 +1,164 @@
+.modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $zIndex-modal;
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+
+    &-dialog {
+        max-width: 500px;
+        width: 100%;
+        padding: 3rem;
+        background-color: $support-light-1;
+        border-radius: $borderRadius-global;
+        opacity: 0;
+        transform: translate3D(0, -15px, 0);
+        transition-property: transform, opacity;
+        transition-duration: 300ms;
+        transition-timing-function: ease-in-out;
+    }
+    &-header .title {
+        @include font-size($h1);
+        line-height: 1.2;
+        font-weight: 500;
+        color: $support-dark-1;
+        margin-bottom: 2rem;
+    }
+    &.display {
+        display: flex;
+    }
+    &.show {
+        opacity: 1;
+
+        .modal-dialog {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+.modal-scrollbar {
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+
+// body profile
+.modal-body-profile {
+    display: none;
+
+    .profile-pic {
+        display: block;
+        cursor: pointer;
+        position: relative;
+
+        .label {
+            display: block;
+            margin-bottom: 1rem;
+        }
+        .img {
+            @include userpic(200px);
+            margin: 0 auto;
+
+            img {
+                transition: opacity 200ms ease-in-out;
+            }
+        }
+        .icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+
+            path {
+                fill: $support-dark-2;
+                transition: fill 200ms ease-in-out;
+            }
+        }
+        @include desktop-supported {
+            &:hover .img img {
+                opacity: 0.5;
+            }
+            &:hover .icon path {
+                fill: $support-dark-2 + 60%;
+            }
+        }
+        &:active .img img {
+            opacity: 0.7;
+        }
+        &:active .icon path {
+            fill: $support-dark-2 + 30%;
+        }
+    }
+    .profile-pic-input {
+        width: 0px;
+        height: 0px;
+        visibility: hidden;
+        position: absolute;
+        z-index: $zIndex-hidden;
+    }
+    .profile-username {
+        display: block;
+        margin-top: 3rem;
+        margin-bottom: 0.4rem;
+    }
+    .profile-username-input {
+        @include input;
+    }
+
+    .profile-buttons {
+        display: flex;
+        column-gap: 1.5rem;
+        margin-top: 3rem;
+
+        > button {
+            flex: 1;
+        }
+        .btn-cancel {
+            @include btn($support-dark-2, $support-light-1);
+        }
+        .btn-cancel[disabled] {
+            background-color: $support-dark-2 + 100%;
+            cursor: default;
+        }
+        .btn-confirm {
+            @include btn($primary, $support-light-1);
+        }
+    }
+    small {
+        display: block;
+        font-size: 1.1rem;
+        margin-top: 1rem;
+    }
+}
+
+// body confirm delete
+.modal-body-delete {
+    display: none;
+
+    .delete-buttons {
+        display: flex;
+        column-gap: 1.5rem;
+        margin-top: 2rem;
+
+        > button {
+            flex: 1;
+        }
+        .btn-cancel {
+            @include btn($support-dark-2, $support-light-1);
+        }
+        .btn-confirm {
+            @include btn($secondary, $support-light-1);
+        }
+    }
+}

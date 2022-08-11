@@ -1,0 +1,241 @@
+body, input, textarea {
+    font-family: "Rubik", sans-serif;
+    font-size: $body;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $support-dark-2;
+}
+body {
+    background-color: $support-light-2;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.edit-profile .btn-edit {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: opacity 200ms ease-in-out;
+    margin-left: auto;
+    padding: 2rem 0 2rem 0;
+    margin-bottom: 1rem;
+
+    .text {
+        color: $support-dark-2;
+        max-width: 250px;
+        text-align: right;
+    }
+    .img {
+        @include userpic(45px);
+    }
+    @include desktop-supported {
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+    &:active {
+        opacity: 0.8;
+    }
+}
+
+main {
+    max-width: 730px;
+    margin-left: auto;
+    margin-right: auto;
+
+    > .title {
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        z-index: $zIndex-hidden;
+        visibility: hidden;
+    }
+}
+.comment-item {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    column-gap: 3rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background-color: $support-light-1;
+    border-radius: $borderRadius-global;
+
+    .comment-votes {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: $support-light-2;
+        border-radius: $borderRadius-global;
+
+        .btn {
+            cursor: pointer;
+            padding: 1.2rem 1.5rem;
+
+            path {
+                transition: fill 200ms ease-in-out;
+            }
+            @include desktop-supported {
+                &:hover path {
+                    fill: $primary;
+                }
+            }
+            .active {
+                cursor: default;
+
+                path {
+                    fill: $primary;
+                }
+            }
+            &:active path {
+                fill: $primary + 30%;
+            }
+
+        }
+        .btn-minus {
+            padding: calc(1.2rem + 0.55rem - 0.15rem) 1.5rem;
+        }
+        .number {
+            font-weight: 500;
+            color: $primary;
+        }
+    }
+
+    .comment-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        .userpic {
+            @include userpic(30px);
+            margin-right: 10px;
+        }
+        .username {
+            color: $support-dark-1;
+            font-weight: 500;
+        }
+        .user-tag {
+            font-size: $small;
+            display: inline-block;
+            padding: 2px 7px;
+            background-color: $primary;
+            color: $support-light-1;
+            border-radius: 3px;
+            margin-left: 10px;
+        }
+        .user-posted-time {
+            margin-left: 15px;
+        }
+        .btn-reply {
+            margin-left: auto;
+            @include btn-withIcon($primary);
+        }
+        .comment-btns {
+            margin-left: auto;
+
+            .btn-delete {
+                @include btn-withIcon($secondary);
+            }
+            .btn-edit {
+                @include btn-withIcon($primary);
+            }
+        }
+    }
+}
+.comment-reply {
+    width: calc(100% - 80px);
+    margin-left: auto;
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 100%;
+        background-color: $support-light-3;
+        position: absolute;
+        top: 0;
+        left: -41px;
+    }
+}
+.comment-reply + .comment-reply {
+    &::before {
+        height: calc(100% + 20px);
+        top: -20px;
+    }
+}
+.add-comment {
+    width: 100%;
+    background-color: $support-light-1;
+    border-radius: $borderRadius-global;
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    
+    .userpic {
+        @include userpic(40px);
+    }
+    .comment-input {
+        flex: 1 100%;
+
+        textarea {
+            @include input;
+            min-height: 80px;
+            resize: none;
+            line-height: 1.35;
+        }
+    }
+    .btn-send {
+        @include btn($primary, $support-light-1);
+    }
+}
+
+.error-messages {
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+    padding: 2rem;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: $zIndex-errorMsg;
+    background-color: $secondary-light-1;
+    border-radius: $borderRadius-global;
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.05),
+    0 3px 14px 3px rgba(0,0,0,0.06),
+    0 4px 5px 0 rgba(0,0,0,0.07);
+    opacity: 0;
+    transform: translate3D(30px, 0, 0);
+    transition-property: opacity, transform;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+
+    &.display {
+        display: flex;
+    }
+    &.show {
+        opacity: 1;
+        transform: none;
+    }
+    .icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: $support-light-1;
+        background-color: $secondary;
+        font-size: 2.3rem;
+    }
+    .text {
+        color: rgb(66, 66, 66);
+    }
+}
