@@ -1,0 +1,49 @@
+.footer {
+    font-size: $body-sm;
+    line-height: 1.4;
+    text-align: center;
+
+    &-container {
+        max-width: 730px;
+        margin: 0 auto;
+        margin-top: 3rem;
+        padding: calc(3rem - 1.2rem) 0;
+        border-top: 2px solid $support-light-3;
+    
+        p {
+            display: inline-block;
+        }
+        a {
+            display: inline-block;
+            padding: 1.2rem 0;
+            color: $primary;
+            transition: color 200ms ease-in-out;
+            @include desktop-supported {
+                &:hover {
+                    color: $primary + 60%;
+                }
+            }
+            &:active {
+                color: $primary + 30%;
+            }
+        }
+    }
+}
+
+@include breakpoint-sm {
+    .footer {
+        font-size: 1.3rem;
+        line-height: 1.1;
+
+    }
+    .footer-container {
+        padding: calc(3rem - 0.55rem) 0;
+
+        p {
+            display: block;
+        }
+        a {
+            padding: 0.55rem 0;
+        }
+    }
+}

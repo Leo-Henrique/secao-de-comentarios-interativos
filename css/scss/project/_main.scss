@@ -4,39 +4,15 @@ body, input, textarea {
     line-height: 1.5;
     font-weight: 400;
     color: $support-dark-2;
+
+    @include breakpoint-sm {
+        font-size: $body-sm;
+    }
 }
 body {
     background-color: $support-light-2;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-}
-
-.edit-profile .btn-edit {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    cursor: pointer;
-    transition: opacity 200ms ease-in-out;
-    margin-left: auto;
-    padding: 2rem 0 2rem 0;
-    margin-bottom: 1rem;
-
-    .text {
-        color: $support-dark-2;
-        max-width: 250px;
-        text-align: right;
-    }
-    .img {
-        @include userpic(45px);
-    }
-    @include desktop-supported {
-        &:hover {
-            opacity: 0.6;
-        }
-    }
-    &:active {
-        opacity: 0.8;
-    }
 }
 
 main {
@@ -115,7 +91,12 @@ main {
             margin-right: 10px;
         }
         .username {
+            display: inline-block;
+            max-width: 160px;
+            overflow: hidden;
+            text-overflow: ellipsis;
             color: $support-dark-1;
+            white-space: nowrap;
             font-weight: 500;
         }
         .user-tag {
@@ -129,12 +110,16 @@ main {
         }
         .user-posted-time {
             margin-left: 15px;
+            line-height: 1.3;
         }
         .btn-reply {
             margin-left: auto;
             @include btn-withIcon($primary);
         }
         .comment-btns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
             margin-left: auto;
 
             .btn-delete {
@@ -185,7 +170,7 @@ main {
 
         textarea {
             @include input;
-            min-height: 80px;
+            min-height: 100px;
             resize: none;
             line-height: 1.35;
         }
@@ -195,47 +180,80 @@ main {
     }
 }
 
-.error-messages {
-    max-width: 400px;
-    display: flex;
-    align-items: center;
-    column-gap: 2rem;
-    padding: 2rem;
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: $zIndex-errorMsg;
-    background-color: $secondary-light-1;
-    border-radius: $borderRadius-global;
-    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.05),
-    0 3px 14px 3px rgba(0,0,0,0.06),
-    0 4px 5px 0 rgba(0,0,0,0.07);
-    opacity: 0;
-    transform: translate3D(30px, 0, 0);
-    transition-property: opacity, transform;
-    transition-duration: 300ms;
-    transition-timing-function: ease-in-out;
 
-    &.display {
-        display: flex;
+// responsive
+@include breakpoint-md {
+    .comment-item {
+        flex-direction: column;
+        row-gap: 2rem;
+        position: relative;
+        padding-bottom: calc(2rem + 36px);
+
+        .comment-votes {
+            width: 100%;
+            order: 1;
+            flex-direction: row;
+            gap: 0.6rem;
+            
+            .btn {
+                flex: 1;
+                padding: 1.6rem;
+            }
+            .btn-plus svg {
+                margin-left: auto;
+            }
+            
+            .btn-minus {
+                padding: calc(1.6rem + 0.55rem - 0.15rem) 1.6rem;
+            }
+        }
+        .comment-header {
+            flex-wrap: wrap;
+            gap: 1rem;
+
+            .userpic {
+                margin-right: 0;
+            }
+            .user-posted-time,
+            .user-tag {
+                margin-left: 0;
+            }
+            .btn-reply,
+            .comment-btns {
+                position: absolute;
+                bottom: calc(20px - 1rem);
+                right: calc(20px - 1rem);
+
+            }
+            .btn-reply,
+            .comment-btns > .btn-delete, 
+            .comment-btns > .btn-edit {
+                padding: 1rem;
+            }
+
+        }
     }
-    &.show {
-        opacity: 1;
-        transform: none;
+    .comment-reply {
+        width: calc(100% - 20px);
+    
+        &::before {
+            left: -18px;
+        }
     }
-    .icon {
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        color: $support-light-1;
-        background-color: $secondary;
-        font-size: 2.3rem;
-    }
-    .text {
-        color: rgb(66, 66, 66);
+    .add-comment {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 1.5rem;
+        
+        .userpic {
+            @include userpic(40px);
+        }
+        .comment-input {
+            order: -1;
+        }
+        .btn-send {
+            margin-left: auto;
+        }
+
     }
 }

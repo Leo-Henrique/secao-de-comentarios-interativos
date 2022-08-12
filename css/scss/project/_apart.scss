@@ -1,0 +1,95 @@
+.edit-profile .btn-edit {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: opacity 200ms ease-in-out;
+    margin-left: auto;
+    padding: 2rem 0 2rem 0;
+    margin-bottom: 1rem;
+
+    .text {
+        color: $support-dark-2;
+        max-width: 250px;
+        text-align: right;
+    }
+    .img {
+        @include userpic(45px);
+    }
+    @include desktop-supported {
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+    &:active {
+        opacity: 0.8;
+    }
+}
+
+.error-messages {
+    max-width: 400px;
+    display: none;
+    align-items: center;
+    column-gap: 2rem;
+    padding: 2rem;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    margin-left: 15px;
+    z-index: $zIndex-errorMsg;
+    background-color: $secondary-light-1;
+    border-radius: $borderRadius-global;
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.05),
+    0 3px 14px 3px rgba(0,0,0,0.06),
+    0 4px 5px 0 rgba(0,0,0,0.07);
+    opacity: 0;
+    transform: translate3D(30px, 0, 0);
+    transition-property: opacity, transform;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
+
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: $zIndex-errorMsgBar;
+        border-radius: 0 0 $borderRadius-global $borderRadius-global;
+        background-color: $secondary-dark-1;
+        width: 100%;
+        height: 8px;
+        transition-property: width, border-radius;
+        transition-duration: 300ms;
+        transition-timing-function: ease-in-out;
+    }
+    .icon {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: $support-light-1;
+        background-color: $secondary;
+        font-size: 2.3rem;
+    }
+    .text {
+        color: rgb(66, 66, 66);
+    }
+    &.display {
+        display: flex;
+    }
+    &.show {
+        opacity: 1;
+        transform: none;
+
+        &::after {
+            border-radius: 0 0 $borderRadius-global 0;
+        }
+    }
+    @include breakpoint-sm {
+        padding: 1.6rem;
+    }
+}
