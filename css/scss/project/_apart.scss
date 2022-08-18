@@ -26,8 +26,9 @@
     }
 }
 
-.error-messages {
+.messages {
     max-width: 400px;
+    width: 100%;
     display: none;
     align-items: center;
     column-gap: 2rem;
@@ -37,7 +38,6 @@
     right: 15px;
     margin-left: 15px;
     z-index: $zIndex-errorMsg;
-    background-color: $secondary-light-1;
     border-radius: $borderRadius-global;
     box-shadow: 0 8px 10px 1px rgba(0,0,0,0.05),
     0 3px 14px 3px rgba(0,0,0,0.06),
@@ -56,12 +56,12 @@
         right: 0;
         z-index: $zIndex-errorMsgBar;
         border-radius: 0 0 $borderRadius-global $borderRadius-global;
-        background-color: $secondary-dark-1;
         width: 100%;
+        opacity: 0;
+        transition-duration: var(--timeBar-duration, initial), 500ms, 200ms;
         height: 8px;
-        transition-property: width, border-radius;
-        transition-duration: 300ms;
-        transition-timing-function: ease-in-out;
+        transition-property: width, border-radius, opacity;
+        transition-timing-function: linear, ease-in-out;
     }
     .icon {
         flex-shrink: 0;
@@ -72,8 +72,6 @@
         height: 30px;
         border-radius: 50%;
         color: $support-light-1;
-        background-color: $secondary;
-        font-size: 2.3rem;
     }
     .text {
         color: rgb(66, 66, 66);
@@ -86,7 +84,36 @@
         transform: none;
 
         &::after {
+            opacity: 1;
+            width: 0%;
             border-radius: 0 0 $borderRadius-global 0;
+        }
+    }
+    &.finally::after {
+        opacity: 0;
+    }
+    &.error {
+        background-color: $secondary-light-1;
+
+        &::after {
+            background-color: $secondary-dark-1;
+        }
+        .icon {
+            font-size: 2.3rem;
+            font-weight: initial;
+            background-color: $secondary;
+        }
+    }
+    &.success {
+        background-color: $success-light-1;
+
+        &::after {
+            background-color: $success-dark-1;
+        }
+        .icon {
+            font-size: 1.7rem;
+            font-weight: 700;
+            background-color: $success;
         }
     }
     @include breakpoint-sm {

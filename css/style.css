@@ -459,10 +459,12 @@ svg {
 
 .modal {
   display: none;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+  padding: 1.5rem;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -477,7 +479,8 @@ svg {
 
 @media (max-width: 575.98px) {
   .modal {
-    align-items: flex-end;
+    justify-content: flex-end;
+    padding-bottom: 0;
   }
 }
 
@@ -488,12 +491,11 @@ svg {
   background-color: #ffffff;
   border-radius: 10px;
   opacity: 0;
-  margin-left: 15px;
-  margin-right: 15px;
   transform: translate3D(0, -15px, 0);
   transition-property: transform, opacity;
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;
+  overflow-y: auto;
 }
 
 @media (max-width: 575.98px) {
@@ -531,6 +533,10 @@ svg {
   transform: none;
 }
 
+.modal.required .modal-dialog {
+  transform: scale(1.05);
+}
+
 .modal-scrollbar {
   overflow: hidden;
   position: fixed;
@@ -559,6 +565,7 @@ svg {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  transition: opacity 300ms ease-in-out;
 }
 
 .modal-body-profile .profile-pic .img img {
@@ -579,7 +586,7 @@ svg {
 
 .modal-body-profile .profile-pic .icon path {
   fill: #67727e;
-  transition: fill 200ms ease-in-out;
+  transition: fill 300ms ease-in-out;
 }
 
 @media not all and (hover: none) {
@@ -599,12 +606,46 @@ svg {
   fill: #85909c;
 }
 
+.modal-body-profile .profile-pic.transition {
+  pointer-events: none;
+}
+
+.modal-body-profile .profile-pic.transition .img {
+  opacity: 0;
+}
+
 .modal-body-profile .profile-pic-input {
   width: 0px;
   height: 0px;
   visibility: hidden;
   position: absolute;
   z-index: -1;
+}
+
+.modal-body-profile .profile-pic-remove {
+  display: none;
+  padding: 1.2rem;
+  padding-right: 0;
+  font-size: 1.4rem;
+  text-align: right;
+  margin-left: auto;
+  color: #67727e;
+  cursor: pointer;
+  transition: color 200ms ease-in-out;
+}
+
+@media not all and (hover: none) {
+  .modal-body-profile .profile-pic-remove:hover {
+    color: #a3aeba;
+  }
+}
+
+.modal-body-profile .profile-pic-remove:active {
+  color: #85909c;
+}
+
+.modal-body-profile .profile-pic-remove.active {
+  display: block;
 }
 
 .modal-body-profile .profile-username {
@@ -881,8 +922,9 @@ svg {
   opacity: 0.8;
 }
 
-.error-messages {
+.messages {
   max-width: 400px;
+  width: 100%;
   display: none;
   align-items: center;
   column-gap: 2rem;
@@ -892,7 +934,6 @@ svg {
   right: 15px;
   margin-left: 15px;
   z-index: 20;
-  background-color: #ffb8bb;
   border-radius: 10px;
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.05), 0 3px 14px 3px rgba(0, 0, 0, 0.06), 0 4px 5px 0 rgba(0, 0, 0, 0.07);
   opacity: 0;
@@ -902,7 +943,7 @@ svg {
   transition-timing-function: ease-in-out;
 }
 
-.error-messages::after {
+.messages::after {
   content: "";
   display: block;
   position: absolute;
@@ -910,15 +951,15 @@ svg {
   right: 0;
   z-index: 25;
   border-radius: 0 0 10px 10px;
-  background-color: #f53239;
   width: 100%;
+  opacity: 0;
+  transition-duration: var(--timeBar-duration, initial), 500ms, 200ms;
   height: 8px;
-  transition-property: width, border-radius;
-  transition-duration: 300ms;
-  transition-timing-function: ease-in-out;
+  transition-property: width, border-radius, opacity;
+  transition-timing-function: linear, ease-in-out;
 }
 
-.error-messages .icon {
+.messages .icon {
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -927,29 +968,61 @@ svg {
   height: 30px;
   border-radius: 50%;
   color: #ffffff;
-  background-color: #ed6468;
-  font-size: 2.3rem;
 }
 
-.error-messages .text {
+.messages .text {
   color: #424242;
 }
 
-.error-messages.display {
+.messages.display {
   display: flex;
 }
 
-.error-messages.show {
+.messages.show {
   opacity: 1;
   transform: none;
 }
 
-.error-messages.show::after {
+.messages.show::after {
+  opacity: 1;
+  width: 0%;
   border-radius: 0 0 10px 0;
 }
 
+.messages.finally::after {
+  opacity: 0;
+}
+
+.messages.error {
+  background-color: #ffb8bb;
+}
+
+.messages.error::after {
+  background-color: #f53239;
+}
+
+.messages.error .icon {
+  font-size: 2.3rem;
+  font-weight: initial;
+  background-color: #ed6468;
+}
+
+.messages.success {
+  background-color: #EBFBF5;
+}
+
+.messages.success::after {
+  background-color: #35D39D;
+}
+
+.messages.success .icon {
+  font-size: 1.7rem;
+  font-weight: 700;
+  background-color: #01CC88;
+}
+
 @media (max-width: 575.98px) {
-  .error-messages {
+  .messages {
     padding: 1.6rem;
   }
 }
@@ -1215,6 +1288,11 @@ main > .title {
 
 .comment-item .comment-header .comment-btns .btn-edit:active span {
   color: #7275d4;
+}
+
+.comment-item .comment-content p > .replying-to {
+  color: #5457b6;
+  font-weight: 500;
 }
 
 .comment-reply {

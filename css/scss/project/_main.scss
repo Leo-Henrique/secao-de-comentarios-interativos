@@ -130,6 +130,10 @@ main {
             }
         }
     }
+    .comment-content p > .replying-to {
+        color: $primary;
+        font-weight: 500;
+    }
 }
 .comment-reply {
     width: calc(100% - 80px);

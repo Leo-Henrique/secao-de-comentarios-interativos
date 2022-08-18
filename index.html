@@ -55,7 +55,7 @@
 </head>
 <body>
 
-    <div class="modal "
+    <div class="modal"
     aria-labelledby="modalLabel"
     aria-hidden="true">
         <div class="modal-dialog">
@@ -63,7 +63,6 @@
                 <h2 class="title"
                 id="modalLabel">
                     Crie seu perfil de usuário!
-                    <!-- Deletar comentário -->
                 </h2>
             </div>
 
@@ -72,7 +71,7 @@
                 for="addUserpic"
                 title="Editar foto de perfil">
                     <span class="label">
-                        Adicione sua foto
+                        Adicione sua foto de perfil
                     </span>
 
                     <div class="img">
@@ -93,6 +92,12 @@
                 name="addUserpic"
                 accept="image/*" />
 
+                <button class="profile-pic-remove"
+                id="profilePicRemove"
+                type="button">
+                    Remover minha foto
+                </button>
+
                 <label class="profile-username"
                 for="addUsername">
                     Adicione seu nome de usuário*
@@ -103,7 +108,9 @@
                 id="addUsername"
                 name="addUsername"
                 autocomplete="off"
-                placeholder="Exemplo: leonardoHenrique" />
+                placeholder="Exemplo: leonardoHenrique"
+                minlength="3"
+                maxlength="26" />
 
                 <div class="profile-buttons">
                     <button class="btn-cancel"
@@ -119,7 +126,7 @@
                 </div>
 
                 <small class="warning">
-                    Os seus dados não serão utilizados e nem serão armazenados, apenas serão salvos no navegador. Você também poderá alterar suas informações a qualquer momento depois de fechar essa janela.
+                    Os seus dados só serão utilizados para serem armazenados no navegador. Você também poderá alterar suas informações a qualquer momento depois de fechar essa janela.
                 </small>
             </form>
 
@@ -146,16 +153,22 @@
     <div class="edit-profile">
         <button class="btn-edit"
         type="button"
-        id="edit-profile"
+        id="editProfile"
         title="Editar meu perfil"
         aria-label="Editar meu perfil">
-            <span class="text">
-                Olá, amyrobson
-            </span>
+            <p class="text">
+                <span>
+                    Olá, 
+                </span>
+                <span data-user="username">
+                    usuário
+                </span>
+            </p>
 
-            <div class="img">
-                <img src="images/image-amyrobson.png" 
-                alt="Teste">
+            <div class="img"
+            data-user="image">
+                <img src="images/user-profile-pic.svg" 
+                alt="Foto de perfil do usuário">
             </div>
         </button>
     </div>
@@ -176,7 +189,10 @@
                         </svg>
                     </button>
 
-                    <span class="number">12</span>
+                    <span class="number"
+                    data-dice="score">
+                        0
+                    </span>
 
                     <button class="btn btn-minus"
                     type="button"
@@ -189,19 +205,20 @@
 
                 <div class="comment-body">
                     <div class="comment-header">
-                        <div class="userpic">
-                            <img src="images/image-amyrobson.png" 
-                            alt="Teste">
+                        <div class="userpic"
+                        data-dice="image">
+                            <img src="images/user-profile-pic.svg" 
+                            alt="Foto de perfil">
                         </div>
 
                         <span class="username"
-                        title="amyrobson">
-                            amyrobson
+                        title="usuário"
+                        data-dice="username">
+                            usuário
                         </span>
 
-                        <span class="user-posted-time">
-                            1 mês atrás
-                        </span>
+                        <span class="user-posted-time"
+                        data-dice="createdAt"></span>
 
                         <button class="btn-reply" 
                         type="button">
@@ -218,7 +235,7 @@
                     </div>
 
                     <div class="comment-content">
-                        <p>
+                                                <p data-dice="content">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum placeat libero, quisquam expedita molestias temporibus, animi non amet totam adipisci, cupiditate in praesentium iusto ipsum omnis saepe rerum beatae enim.
                         </p>
                     </div>
@@ -235,7 +252,10 @@
                         </svg>
                     </button>
 
-                    <span class="number">12</span>
+                    <span class="number"
+                    data-dice="score">
+                        0
+                    </span>
 
                     <button class="btn btn-minus"
                     type="button"
@@ -248,19 +268,20 @@
 
                 <div class="comment-body">
                     <div class="comment-header">
-                        <div class="userpic">
-                            <img src="images/image-amyrobson.png" 
-                            alt="Teste">
+                        <div class="userpic"
+                        data-dice="image">
+                            <img src="images/user-profile-pic.svg" 
+                            alt="Foto de perfil">
                         </div>
 
                         <span class="username"
-                        title="amyrobson">
-                            amyrobson
+                        title="usuário"
+                        data-dice="username">
+                            usuário
                         </span>
 
-                        <span class="user-posted-time">
-                            1 mês atrás
-                        </span>
+                        <span class="user-posted-time"
+                        data-dice="createdAt"></span>
 
                         <button class="btn-reply" 
                         type="button">
@@ -277,7 +298,7 @@
                     </div>
 
                     <div class="comment-content">
-                        <p>
+                        <p data-dice="content">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum placeat libero, quisquam expedita molestias temporibus, animi non amet totam adipisci, cupiditate in praesentium iusto ipsum omnis saepe rerum beatae enim.
                         </p>
                     </div>
@@ -294,7 +315,10 @@
                         </svg>
                     </button>
 
-                    <span class="number">12</span>
+                    <span class="number"
+                    data-dice="score">
+                        0
+                    </span>
 
                     <button class="btn btn-minus"
                     type="button"
@@ -307,19 +331,20 @@
 
                 <div class="comment-body">
                     <div class="comment-header">
-                        <div class="userpic">
-                            <img src="images/image-amyrobson.png" 
-                            alt="Teste">
+                        <div class="userpic"
+                        data-dice="image">
+                            <img src="images/user-profile-pic.svg" 
+                            alt="Foto de perfil">
                         </div>
 
                         <span class="username"
-                        title="amyrobson">
-                            amyrobson
+                        title="usuário"
+                        data-dice="username">
+                            usuário
                         </span>
 
-                        <span class="user-posted-time">
-                            1 mês atrás
-                        </span>
+                        <span class="user-posted-time"
+                        data-dice="createdAt"></span>
 
                         <button class="btn-reply" 
                         type="button">
@@ -336,7 +361,7 @@
                     </div>
 
                     <div class="comment-content">
-                        <p>
+                        <p data-dice="content">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum placeat libero, quisquam expedita molestias temporibus, animi non amet totam adipisci, cupiditate in praesentium iusto ipsum omnis saepe rerum beatae enim.
                         </p>
                     </div>
@@ -353,7 +378,10 @@
                         </svg>
                     </button>
 
-                    <span class="number">12</span>
+                    <span class="number"
+                    data-dice="score">
+                        0
+                    </span>
 
                     <button class="btn btn-minus"
                     type="button"
@@ -366,23 +394,24 @@
 
                 <div class="comment-body">
                     <div class="comment-header">
-                        <div class="userpic">
-                            <img src="images/image-amyrobson.png" 
-                            alt="Teste">
+                        <div class="userpic"
+                        data-dice="image">
+                            <img src="images/user-profile-pic.svg" 
+                            alt="Foto de perfil">
                         </div>
 
                         <span class="username"
-                        title="amyrobson">
-                            amyrobson
+                        title="usuário"
+                        data-dice="username">
+                            usuário
                         </span>
 
                         <mark class="user-tag">
                             você
                         </mark>
 
-                        <span class="user-posted-time">
-                            1 mês atrás
-                        </span>
+                        <span class="user-posted-time"
+                        data-dice="createdAt"></span>
 
                         <div class="comment-btns">
                             <button class="btn-delete" 
@@ -413,7 +442,7 @@
                     </div>
 
                     <div class="comment-content">
-                        <p>
+                        <p data-dice="content">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum placeat libero, quisquam expedita molestias temporibus, animi non amet totam adipisci, cupiditate in praesentium iusto ipsum omnis saepe rerum beatae enim.
                         </p>
                     </div>
@@ -422,9 +451,9 @@
         </ul>
 
         <div class="add-comment">
-            <div class="userpic">
-                <img src="images/image-amyrobson.png" 
-                alt="Teste">
+            <div class="userpic" data-user="image">
+                <img src="images/user-profile-pic.svg" 
+                alt="Foto de perfil" />
             </div>
 
             <label class="comment-input"
@@ -462,7 +491,7 @@
         </div>
     </footer>
     
-    <div class="error-messages">
+    <div class="messages ">
         <span class="icon">
             !
         </span>
@@ -471,6 +500,9 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, voluptas.
         </p>
     </div>
+
+    <script type="module"
+    src="js/script.js"></script>
 
 </body>
 </html>

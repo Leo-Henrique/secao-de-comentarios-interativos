@@ -1,9 +1,11 @@
 .modal {
     display: none;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
+    padding: 1.5rem;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -16,7 +18,8 @@
     transition: opacity 300ms ease-in-out;
 
     @include breakpoint-sm {
-        align-items: flex-end;
+        justify-content: flex-end;
+        padding-bottom: 0;
     }
 
     &-dialog {
@@ -26,12 +29,11 @@
         background-color: $support-light-1;
         border-radius: $borderRadius-global;
         opacity: 0;
-        margin-left: 15px;
-        margin-right: 15px;
         transform: translate3D(0, -15px, 0);
         transition-property: transform, opacity;
         transition-duration: 300ms;
         transition-timing-function: ease-in-out;
+        overflow-y: auto;
 
         @include breakpoint-sm {
             border-radius: $borderRadius-global $borderRadius-global 0 0;
@@ -56,6 +58,9 @@
             opacity: 1;
             transform: none;
         }
+    }
+    &.required .modal-dialog {
+        transform: scale(1.05);
     }
 }
 .modal-scrollbar {
@@ -83,6 +88,7 @@
             @include userpic(200px);
             margin: 0 auto;
 
+            transition: opacity 300ms ease-in-out;
             img {
                 transition: opacity 200ms ease-in-out;
             }
@@ -94,7 +100,7 @@
 
             path {
                 fill: $support-dark-2;
-                transition: fill 200ms ease-in-out;
+                transition: fill 300ms ease-in-out;
             }
         }
         @include desktop-supported {
@@ -111,6 +117,13 @@
         &:active .icon path {
             fill: $support-dark-2 + 30%;
         }
+        &.transition {
+            pointer-events: none;
+
+            .img {
+                opacity: 0;
+            }
+        }
     }
     .profile-pic-input {
         width: 0px;
@@ -118,6 +131,29 @@
         visibility: hidden;
         position: absolute;
         z-index: $zIndex-hidden;
+    }
+    .profile-pic-remove {
+        display: none;
+        padding: 1.2rem;
+        padding-right: 0;
+        font-size: $small;
+        text-align: right;
+        margin-left: auto;
+        color: $support-dark-2;
+        cursor: pointer;
+        transition: color 200ms ease-in-out;
+
+        @include desktop-supported {
+            &:hover {
+                color: $support-dark-2 + 60%;
+            }
+        }
+        &:active {
+            color: $support-dark-2 + 30%;
+        }
+        &.active {
+            display: block;
+        }
     }
     .profile-username {
         display: block;
