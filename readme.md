@@ -15,7 +15,7 @@ Esse desafio reforça muito a **lógica de programação**, ainda mais com algun
     * [Links](#-acesse-o-projeto)
 * [Desenvolvimento](#%EF%B8%8F-desenvolvimento)
     * [Tecnologias utilizadas](#-tecnologias-utilizadas)
-    * [Aperfeiçoamentos](#aperfeiçoamentos)
+    * [Aperfeiçoamentos](#-aperfeiçoamentos)
             * [Criar perfil de usuário](#criar-perfil-de-usuário)
             * [Mensagens de erro ou sucesso](#mensagens-de-erro-ou-sucesso)
             * [Animações](#animações)
@@ -84,7 +84,7 @@ https://user-images.githubusercontent.com/72027449/199783872-489fb650-d6c9-4afe-
 
 #### Lógica de programação
 
-Como destacado na introdução deste readme, a lógica de programação foi o principal ponto trabalhado neste desafio. O conceito de *pensar antes de escrever* nunca foi tão aplicado por mim antes.
+Como destacado na introdução deste readme, a lógica de programação foi o principal ponto trabalhado neste desafio. O conceito de **pensar antes de escrever** nunca foi tão aplicado por mim antes.
 
 Separar o que é essencial do secundário; considerar o contexto que você vai escrever um novo bloco de código; considerar o que já foi e o que será executado após o seu novo código; reaproveitar funções e módulos que se encaixam em ocasiões diferentes. A junção de tudo isso foi pra mim, fatores essenciais para concluir este projeto exatamente com o resultado desejado.
 
