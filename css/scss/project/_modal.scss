@@ -13,6 +13,8 @@
     right: 0;
     z-index: $zIndex-modal;
     background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     overflow: hidden;
     opacity: 0;
     transition: opacity 300ms ease-in-out;
@@ -48,6 +50,28 @@
         color: $support-dark-1;
         margin-bottom: 2rem;
     }
+    &-body.show {
+        display: block;
+    }
+    &-footer {
+        display: flex;
+        column-gap: 1.5rem;
+
+        .btn {
+            flex: 1;
+        }
+        .btn-cancel {
+            @include btn($support-dark-2, $support-light-1);
+        }
+        .btn-cancel[disabled] {
+            display: none;
+        }
+        @include breakpoint-sm {
+            flex-direction: column;
+            row-gap: 1rem;
+        }
+
+    }
     &.display {
         display: flex;
     }
@@ -72,8 +96,37 @@
 
 
 // body profile
-.modal-body-profile {
-    // display: none;
+.modal-dialog.dialog-profile {
+    .modal-footer {
+        flex-wrap: wrap;
+        margin-top: 3rem;
+
+        .btn-confirm {
+            @include btn($primary, $support-light-1);
+
+            &[disabled] {
+                background-color: $primary + 60%;
+                cursor: default;
+            }
+        }
+        .warning {
+            flex: 1 100%;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        
+        @include breakpoint-sm {
+            margin-top: 2rem;
+
+            .warning {
+                font-size: 1.05rem;
+                margin-top: 0.6rem;
+            }
+        }
+    }
+}
+.profile {
+    display: none;
 
     .profile-pic {
         display: block;
@@ -164,75 +217,41 @@
         @include input;
     }
 
-    .profile-buttons {
-        display: flex;
-        column-gap: 1.5rem;
-        margin-top: 3rem;
 
-        > button {
-            flex: 1;
-        }
-        .btn-cancel {
-            @include btn($support-dark-2, $support-light-1);
-        }
-        .btn-cancel[disabled] {
-            display: none;
-            background-color: $support-dark-2 + 100%;
-            cursor: default;
-        }
-        .btn-confirm {
-            @include btn($primary, $support-light-1);
-        }
-    }
-    small {
-        display: block;
-        font-size: 1.1rem;
-        margin-top: 1rem;
-    }
     @include breakpoint-sm {
         .profile-pic .img {
-            @include userpic(170px)
-        }
-        .profile-buttons {
-            flex-direction: column;
-            row-gap: 1rem;
-            margin-top: 2rem;
-        }
-        small {
-            font-size: 1.05rem;
-            margin-top: 0.6rem;
+            @include userpic(170px);
         }
     }
 }
 
 // body confirm delete
-.modal-body-delete {
-    display: none;
+.modal-dialog.dialog-confirmation {
+    max-width: 430px;
 
-    .delete-buttons {
-        display: flex;
-        column-gap: 1.5rem;
+    .modal-footer {
         margin-top: 2rem;
-
-        > button {
-            flex: 1;
-        }
-        .btn-cancel {
-            @include btn($support-dark-2, $support-light-1);
-        }
+        flex-direction: column;
+        row-gap: 1rem;
+        
         .btn-confirm {
             @include btn($secondary, $support-light-1);
+            order: -1;
+        }
+        .warning {
+            display: none;
         }
     }
-    @include breakpoint-sm {
-        .delete-buttons {
-            flex-direction: column;
-            row-gap: 1rem;
-            margin-top: 1.5rem;
 
-            > button {
-                width: 100%;
-            }
+    @include breakpoint-sm {
+        padding: 2rem;
+
+        .modal-header {
+            border-bottom: 1px solid $support-dark-2 + 110%;
+            margin-bottom: 2rem;
         }
     }
+}
+.confirmation {
+    display: none;
 }

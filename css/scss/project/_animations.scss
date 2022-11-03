@@ -1,0 +1,68 @@
+.comment-container + 
+.comment-container > .comment-item.hidden,
+.comment-replies .comment-item.hidden,
+.comments .add-comment.hidden {
+    opacity: 0;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    transform: translate3D(0, -30px, 0);
+    transition-property: opacity, margin-top, height, padding-top, padding-bottom, transform;
+    transition-timing-function: ease-in-out;
+
+    @include breakpoint-md {
+        .comment-btns {
+            transition-property: opacity;
+            transition-timing-function: ease-in-out;
+            opacity: 0;
+        }
+    }
+}
+.comment-container + 
+.comment-container > .comment-item.show,
+.comment-replies .comment-item.show,
+.comments .add-comment.show {
+    opacity: 1;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    transform: none;
+    overflow: initial;
+
+    .comment-btns.show {
+        opacity: 1;
+    }
+}
+.comment-container + 
+.comment-container > .comment-item.show,
+.comment-replies .comment-item.show {
+    margin-top: 2rem;
+
+    @include breakpoint-md {
+        padding-bottom: calc(2rem + 36px);
+    }
+}
+.comments .add-comment.show {
+    margin-top: 0.8rem;
+}
+.comments .add-comment {
+    &::before {
+        transition: transform 300ms ease-in-out;
+    }
+    &.displacement-left {
+        transition-duration: 200ms !important;
+        transform: translate3D(-15px, 0, 0);
+
+        &::before {
+            transition-duration: 200ms;
+            transform: translate3D(15px, 0, 0);
+        }
+    }
+    &.displacement-right {
+        transform: translate3D(15px, 0, 0);
+
+        &::before {
+            transform: translate3D(-15px, 0, 0);
+        } 
+    }
+}
